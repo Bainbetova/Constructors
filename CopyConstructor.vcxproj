@@ -141,6 +141,9 @@
   <ItemGroup>
     <ClCompile Include="CopyConstructor.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MoveConstructor.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

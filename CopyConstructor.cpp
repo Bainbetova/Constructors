@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include "MoveConstructor.h"
 
 /* Класс с конструктором копирования */
 template<class T>
@@ -51,22 +52,26 @@ public:
 class Item
 {
 public:
-	Item() { std::cout << "Item acquired\n"; }
-	~Item() { std::cout << "Item destroyed\n"; }
+	Item() { std::cout << "ItemMoveMove acquired\n"; }
+	~Item() { std::cout << "ItemMove destroyed\n"; }
 };
 
 Auto_ptr<Item> generateItem()
 {
-	Auto_ptr<Item> item(new Item); // будет уничтожена, при завершении выполнения данной функции
-	return item; // это возвращаемое значение приведет к вызову конструктора копирования
+	Auto_ptr<Item> Item(new Item); // будет уничтожена, при завершении выполнения данной функции
+	return Item; // это возвращаемое значение приведет к вызову конструктора копирования
 }
 
 
 
 int main()
 {
-	Auto_ptr<Item> mainItem;
-	mainItem = generateItem(); // эта операция присваивания приведет к вызову оператора присваивания копированием
+	/* Использование конструктора копирования */
+	//Auto_ptr<Item> mainItem;
+	//mainItem = generateItem(); // эта операция присваивания приведет к вызову оператора присваивания копированием
 
+	/* Использование конструктора перемещения */
+	Move_ptr<ItemMove> mainItemMove;
+	mainItemMove = generateItemMove(); // эта операция присваивания приведет к вызову оператора присваивания перемещением
 	return 0;
 }
