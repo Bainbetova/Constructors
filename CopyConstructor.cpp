@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-// Умного указатель
+/* Класс с конструктором копирования */
 template<class T>
 class Auto_ptr
 {
@@ -47,6 +47,7 @@ public:
 	bool isNull() const { return m_ptr == nullptr; }
 };
 
+// Инкапсулированный умный указатель
 class Item
 {
 public:
@@ -56,9 +57,11 @@ public:
 
 Auto_ptr<Item> generateItem()
 {
-	Auto_ptr<Item> item(new Item);
+	Auto_ptr<Item> item(new Item); // будет уничтожена, при завершении выполнения данной функции
 	return item; // это возвращаемое значение приведет к вызову конструктора копирования
 }
+
+
 
 int main()
 {
