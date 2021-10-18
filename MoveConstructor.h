@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+
+/* Класс с конструтором перемещения и с оператором присваивания перемещением, с запретом на копирование */
 template<class T>
 class Move_ptr
 {
@@ -15,12 +17,18 @@ public:
 		delete m_ptr;
 	}
 
+	// Конструктор копирования - запрещаем любое копирование
+	Move_ptr(const Move_ptr& x) = delete;
+
 	// Конструктор перемещения, который передает право собственности на x.m_ptr в m_ptr
 	Move_ptr(Move_ptr&& x) noexcept
 		: m_ptr(x.m_ptr)
 	{
 		x.m_ptr = nullptr; 
 	} 
+
+	// Оператор присваивания копированием - запрещаем любое копирование!
+	Move_ptr& operator=(const Move_ptr& x) = delete;
 
 	// Оператор присваивания перемещением, который передает право собственности на x.m_ptr в m_ptr
 	Move_ptr& operator=(Move_ptr&& x) noexcept
